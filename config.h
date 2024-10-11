@@ -66,6 +66,9 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *mutecmd[] = { "pactl", "set-sink-mute", "0", "toggle", NULL };
 static const char *volupcmd[] = { "pactl", "set-sink-volume", "0", "+5%", NULL };
 static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-5%", NULL };
+static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
+static const char *mednextcmd[] = { "playerctl", "next", NULL };
+static const char *medprevcmd[] = { "playerctl", "previous", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -103,9 +106,12 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} },
 
-	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
-	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
-	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
+	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd} },
+	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd} },
+	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd} },
+	{ 0, XF86XK_AudioPlay, spawn, {.v = medplaypausecmd} },
+	{ 0, XF86XK_AudioPrev, spawn, {.v = medprevcmd} },
+	{ 0, XF86XK_AudioNext, spawn, {.v = mednextcmd} }
 };
 
 /* button definitions */
