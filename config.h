@@ -63,7 +63,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *yazicmd[] = { "alacritty", "-e", "yazi", NULL };
-static const char *tmuxcmd[] = { "alacritty", "-e", "tmux a", NULL };
+static const char *tmuxcmd[] = { "alacritty", "-e", "tmux", "a", NULL };
 static const char *printscrcmd[] = { "flameshot", "gui", NULL };
 
 static const char *mutecmd[] = { "pactl", "set-sink-mute", "0", "toggle", NULL };
