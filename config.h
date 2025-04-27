@@ -66,9 +66,14 @@ static const char *yazicmd[] = { "alacritty", "-e", "yazi", NULL };
 static const char *printscrcmd[] = { "flameshot", "gui", NULL };
 static const char *lockcmd[] = { "slock", NULL };
 
-static const char *mutecmd[] = { "wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle", NULL };
-static const char *volupcmd[] = { "sh", "-c", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && echo \"\\x01\" | socat -u - UNIX-SENDTO:/tmp/dwmblocks", NULL };
-static const char *voldowncmd[] = { "sh", "-c", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && echo \"\\x01\" | socat -u - UNIX-SENDTO:/tmp/dwmblocks", NULL };
+#define CMD_SIGNAL_SOUND "echo \"\\x01\" | socat -u - UNIX-SENDTO:/tmp/dwmblocks"
+#define CMD_MUTE "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && " CMD_SIGNAL_SOUND
+#define CMD_VOL_UP "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && " CMD_SIGNAL_SOUND
+#define CMD_VOL_DOWN "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && " CMD_SIGNAL_SOUND
+
+static const char *mutecmd[] = { "zsh", "-c", CMD_MUTE, NULL };
+static const char *volupcmd[] = { "zsh", "-c", CMD_VOL_UP, NULL };
+static const char *voldowncmd[] = { "zsh", "-c", CMD_VOL_DOWN, NULL };
 static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
 static const char *mednextcmd[] = { "playerctl", "next", NULL };
 static const char *medprevcmd[] = { "playerctl", "previous", NULL };
